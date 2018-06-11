@@ -4,7 +4,6 @@ variable "prefix" {
 }
 variable "resource_group" {
   description = "Existing resource group inside Azure"
-  default = "EMEA-MKASHIN"
 }
 variable "location" {
   description = "Desired location for objects and their metadata"

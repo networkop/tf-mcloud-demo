@@ -7,6 +7,7 @@ module "veos_aws" {
     source = "./aws-veos"
 
     prefix                = "MCLOUD-AWS"
+    resource_group        = "${var.azure_rg}"
 
     aws_prefix            = "${var.aws_cidr}"
     user_subnets          = "${var.aws_user_subnets}"

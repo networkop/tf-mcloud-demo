@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: no
+  
+  tasks:
+
+  - name: Configure IPsec BGP
+    eos_config:
+      src: ipsec.j2
+      provider: 
+        host: "{{ publicIP }}"
+        username: "{{ username }}"
+        password: "{{ password }}"
+        transport: "eapi"
+        use_ssl: true
+        validate_certs: no
+        authorize: yes  
+
+

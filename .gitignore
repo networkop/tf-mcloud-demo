@@ -1,0 +1,7 @@
+
+*.tfstate
+*.tfstate.*
+crash.log
+*.retry
+**/.terraform/*
+**/terraform.d/*

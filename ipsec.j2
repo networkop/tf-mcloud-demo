@@ -1,0 +1,35 @@
+!
+ip security
+   ike policy IKE-PROPOSAL-AES-256-CBC-GR20
+      ike-lifetime 24
+      encryption aes256
+      dh-group 20
+      local-id {{ publicIP }}
+   !
+   sa policy IPSEC-POLICY-AES-256-CBC-GR20
+      pfs dh-group 20
+   !
+   profile IPSEC-PROFILE-AES-256-CBC-GR20
+      ike-policy IKE-PROPOSAL-AES-256-CBC-GR20 
+      sa-policy IPSEC-POLICY-AES-256-CBC-GR20 
+      connection start
+      shared-key {{ ipsec_psk }}
+!
+ip route {{ local_subnet }} {{ local_nh }} tag 100
+!
+interface Tunnel0
+   mtu 1428
+   ip address {{ tunnel_ip }}/24
+   tunnel mode ipsec
+   tunnel source {{ tunnel_source }}
+   tunnel destination {{ tunnel_destination }}
+   tunnel mss ceiling 1380
+   tunnel ipsec profile IPSEC-PROFILE-AES-256-CBC-GR20
+! 
+route-map PL-STATIC permit 10
+   match tag 100
+!
+router bgp {{ bgp_asn }}
+   neighbor {{ peer_ip }} remote-as {{ peer_asn }}
+   redistribute static route-map PL-STATIC
+!

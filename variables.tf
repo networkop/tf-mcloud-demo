@@ -13,6 +13,8 @@ variable "aws_user_subnets" {
 }
 variable "azure_cidr" {
 }
+variable "azure_rg" {
+}
 
 variable "cloud_user" {}
 variable "admin_password" {}

@@ -21,6 +21,16 @@ The second objective is accomplished by Terraform-driven orchestration of:
 
 Note that all components are provisioned from scratch to orchestrate end-to-end service between user VMs in AWS user subnets and a test VM in Azure test subnet.
 
+# 0. Installation
+
+Install [Terraform](https://www.terraform.io/intro/getting-started/install.html), [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) and [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Go](https://golang.org/doc/install).
+
+Clone the current git repo:
+
+```
+git clone https://github.com/networkop/tf-mcloud-demo.git; cd tf-mcloud-demo
+```
+
 # 1. Authentication
 
 Terraform requires authenticaion details with enough privileges to create and delete VPC/VNET, Subnets and Virtual Machine objects on Azure, AWS and Arista CVP. At a minimum, the folowing environment variables must be set:
@@ -49,6 +59,7 @@ export CVP_USER="CVP admin username"
 export CVP_PWD="CVP admin password"
 ```
 
+Note that this shows only one way of providing credentials. [Other methods](https://www.terraform.io/intro/getting-started/variables.html) are available, including more secure and re-usable [options](https://www.terraform.io/docs/state/sensitive-data.html).
 
 # 2. Input parameters
 
@@ -77,7 +88,7 @@ go build -o terraform.d/plugins/linux_amd64/terraform-provider-cvp github.com/ne
 To build it for MacOS replace the last command with
 
 ```
-go build -o terraform.d/plugins/windows_amd64/terraform-provider-cvp.exe github.com/networkop/terraform-cvp
+go build -o terraform.d/plugins/darwin_amd64/terraform-provider-cvp github.com/networkop/terraform-cvp
 ```
 
 # 4. Initialising Terraform
@@ -92,7 +103,7 @@ terraform init
 
 
 ```
-terraform init
+terraform apply
 ```
 
 # 6. Verification
@@ -128,7 +139,7 @@ $ ssh ec2-user@51.140.9.16
     inet 10.234.1.4/24 brd 10.234.1.255 scope global eth0
 ```
 
-By default this test VM will run a simple Apache web server. Now we can verify connectivity to it from one of the Azure subnets:
+By default this test VM will run a simple Apache web server. Now we can verify connectivity to it from either one of the Azure subnets:
 
 ```
 $ ssh centos@18.218.48.142
@@ -152,5 +163,9 @@ rtt min/avg/max/mdev = 85.961/86.072/86.183/0.111 ms
 # 7. Destroying the demo
 
 ```
-terraform destroy
+TF_WARN_OUTPUT_ERRORS=1 terraform destroy
 ```
+
+# Graph of dependencies
+
+<img src="graph.svg">

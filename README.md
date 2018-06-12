@@ -23,7 +23,7 @@ Note that all components are provisioned from scratch to orchestrate end-to-end 
 
 # 0. Installation
 
-Install [Terraform](https://www.terraform.io/intro/getting-started/install.html), [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) and [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Go](https://golang.org/doc/install).
+Install [Terraform](https://www.terraform.io/intro/getting-started/install.html), [Ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html), [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) and [Go](https://golang.org/doc/install).
 
 Clone the current git repo:
 

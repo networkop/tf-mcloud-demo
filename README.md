@@ -33,7 +33,7 @@ git clone https://github.com/networkop/tf-mcloud-demo.git; cd tf-mcloud-demo
 
 # 1. Authentication
 
-Terraform requires authenticaion details with enough privileges to create and delete VPC/VNET, Subnets and Virtual Machine objects on Azure, AWS and Arista CVP. At a minimum, the folowing environment variables must be set:
+Terraform requires authenticaion details with enough privileges to create and delete VPC/VNET, Subnets and Virtual Machine objects on Azure, AWS and Arista CVP. At a minimum, the following environment variables must be set:
 
 ```bash
 export TF_VAR_ipsec_license="URL of vEOS ipsec license"
@@ -139,7 +139,7 @@ $ ssh ec2-user@51.140.9.16
     inet 10.234.1.4/24 brd 10.234.1.255 scope global eth0
 ```
 
-By default this test VM will run a simple Apache web server. Now we can verify connectivity to it from either one of the Azure subnets:
+By default this test VM will run a simple Apache web server. Now we can verify connectivity to it from either one of the AWS subnets:
 
 ```
 $ ssh centos@18.218.48.142

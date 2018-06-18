@@ -139,7 +139,7 @@ $ ssh ec2-user@51.140.9.16
     inet 10.234.1.4/24 brd 10.234.1.255 scope global eth0
 ```
 
-By default this test VM will run a simple Apache web server. Now we can verify connectivity to it from either one of the AWS subnets:
+Now we can verify connectivity to it from either one of the AWS subnets:
 
 ```
 $ ssh centos@18.218.48.142
@@ -154,10 +154,6 @@ PING 10.234.1.4 (10.234.1.4) 56(84) bytes of data.
 --- 10.234.1.4 ping statistics ---
 2 packets transmitted, 2 received, 0% packet loss, time 1001ms
 rtt min/avg/max/mdev = 85.961/86.072/86.183/0.111 ms
-[centos@ip-10-123-1-44 ~]$ curl http://10.234.1.4
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"><html><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<snip>
 ```
 
 # 7. Destroying the demo

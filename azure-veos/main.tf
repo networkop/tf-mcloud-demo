@@ -327,16 +327,5 @@ resource "azurerm_virtual_machine" "local_test" {
       key_data = "${var.pub_ssh_key}"
       }
   }
-  
-  provisioner "remote-exec" {
-    inline = [
-      "sudo yum install httpd -y",
-    ]
-    connection {
-    type     = "ssh"
-    host     = "${azurerm_public_ip.local_test.ip_address}"
-    user     = "${var.cloud_user}"
-  }
-  }
 
 }
